@@ -45,11 +45,15 @@ public class TestExample {
 
     @Test
     void shouldAnswerWithTrue(){
-         page.navigate("https://www.wikipedia.org/");
-        page.locator("input[name=\"search\"]").click();
-        page.locator("input[name=\"search\"]").fill("playwright");
-        page.locator("input[name=\"search\"]").press("Enter");
+        String selector = "input[name=\"search\"]";
+
+        String baseUrl = "https://www.wikipedia.org/";
+
+        page.navigate(baseUrl);
+        page.locator(selector).click();
+        page.locator(selector).fill("playwright");
+        page.locator(selector).press("Enter");
         page.waitForTimeout(10_000);
-        assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+        assertEquals(baseUrl + "/wiki/Playwright", page.url());
     }
 }
